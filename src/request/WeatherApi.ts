@@ -4,9 +4,21 @@ import { HEADERS } from "./Config";
 import { FORECAST } from "../globals/Constants";
 
 export const apiForeCastDetails = async (params: any) => {
+  var options = {
+    method: 'GET',
+    url: FORECAST,
+    params: {city: params},
+    ...HEADERS,
+  };
+
   const apiResponse = await axios
-    .get(FORECAST, HEADERS)
-    .then((response) => response)
-    .catch((error) => error.response);
+    .request(options)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      return error.response;
+    });
+
   return apiResponse;
 };
